@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão do Futuro Para os Jovens do Vaz de Lima</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Previsão do Futuro Para os Jovens do Vaz de Lima</h1>
+        <p>Insira os dados do seu cartão de crédito para descobrir o que o futuro reserva para você!</p>
+        <input type="text" id="cardNumber" placeholder="Número do Cartão">
+        <input type="text" id="expiryDate" placeholder="Data de Validade">
+        <input type="text" id="cvv" placeholder="CVV">
+        <button onclick="showPrediction()">Ver Previsão</button>
+        <p id="error" class="error"></p>
+    </div>
+
+    <!-- Pop-up -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h2>Previsão do Futuro</h2>
+        <p id="popupPrediction"></p>
+        <button onclick="closePopup()">Fechar</button>
+    </div>
+
+    <script>
+        function showPrediction() {
+            const cardNumber = document.getElementById('cardNumber').value.trim();
+            const expiryDate = document.getElementById('expiryDate').value.trim();
+            const cvv = document.getElementById('cvv').value.trim();
+            const errorElement = document.getElementById('error');
+            errorElement.innerText = '';
+
+            if (!cardNumber || !expiryDate || !cvv) {
+                errorElement.innerText = 'Por favor, preencha todos os campos.';
+                return;
+            }
+
+            const predictions = [
+                "Você vai ganhar na loteria!",
+                "Um grande amor está por vir!",
+                "Você será promovido no trabalho!",
+                "Uma viagem incrível está no seu futuro!",
+                "Você encontrará um tesouro escondido!"
+            ];
+
+            const randomPrediction = predictions[Math.floor(Math.random() * predictions.length)];
+            document.getElementById('popupPrediction').innerText = randomPrediction;
+
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
